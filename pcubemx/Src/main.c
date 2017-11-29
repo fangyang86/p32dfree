@@ -66,6 +66,7 @@ osThreadId defaultTaskHandle;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 void StartDefaultTask(void const * argument);
+void StartDefaultTaskLed2(void const * argument);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -125,6 +126,8 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+  osThreadDef(defaultTaskLed2, StartDefaultTaskLed2, osPriorityNormal, 0, 128);
+  osThreadCreate(osThread(defaultTaskLed2), NULL);
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -363,6 +366,13 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void StartDefaultTaskLed2(void const * argument)
+{
+  for(;;){
+  	HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_14);// red led
+	osDelay(500);// ms
+  	}
+}
 
 /* USER CODE END 4 */
 
