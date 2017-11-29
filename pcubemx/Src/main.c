@@ -66,10 +66,10 @@ osThreadId defaultTaskHandle;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 void StartDefaultTask(void const * argument);
-void StartDefaultTaskLed2(void const * argument);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
+void StartDefaultTaskLed2(void const * argument);
 
 /* USER CODE END PFP */
 
